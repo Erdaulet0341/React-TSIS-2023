@@ -1,3 +1,3 @@
 export default function TopProducts(){
-    return <h1>TOp Products</h1>
+    return <h1>Top Products</h1>
 }
