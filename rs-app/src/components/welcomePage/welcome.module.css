@@ -39,7 +39,7 @@
 }
 
 .wrapper > * {
-    margin-right: 50px; /* Adjust the margin value to control the gap size */
+    margin-right: 50px;
   }
 
 
@@ -90,7 +90,6 @@
   top: 12%;
 }
 
-/**************SVG****************/
 
 path.one {
   transition: 0.4s;

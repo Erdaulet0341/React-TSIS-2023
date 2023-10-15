@@ -26,23 +26,23 @@ const Footer = () => {
         <Row>
           <Column>
             <Heading>About Us</Heading>
-            <FooterLink href="#">Aim</FooterLink>
-            <FooterLink href="#">Vision</FooterLink>
-            <FooterLink href="#">Testimonials</FooterLink>
+            <FooterLink href="#">Didar</FooterLink>
+            <FooterLink href="#">Aryn</FooterLink>
+            <FooterLink href="#">Yerdaulet</FooterLink>
           </Column>
           <Column>
-            <Heading>Services</Heading>
-            <FooterLink href="#">Writing</FooterLink>
-            <FooterLink href="#">Internships</FooterLink>
-            <FooterLink href="#">Coding</FooterLink>
-            <FooterLink href="#">Teaching</FooterLink>
+            <Heading>Privacy&Terms</Heading>
+            <FooterLink href="#">Privacy Policy</FooterLink>
+            <FooterLink href="#">Terms of Use</FooterLink>
+            <FooterLink href="#">Statement</FooterLink>
+            <FooterLink href="#">Law</FooterLink>
           </Column>
           <Column>
             <Heading>Contact Us</Heading>
-            <FooterLink href="#">Uttar Pradesh</FooterLink>
-            <FooterLink href="#">Ahemdabad</FooterLink>
-            <FooterLink href="#">Indore</FooterLink>
-            <FooterLink href="#">Mumbai</FooterLink>
+            <FooterLink href="#">Astana</FooterLink>
+            <FooterLink href="#">Almaty</FooterLink>
+            <FooterLink href="#">Shymkent</FooterLink>
+            <FooterLink href="#">Taraz</FooterLink>
           </Column>
           <Column>
             <Heading>Social Media</Heading>

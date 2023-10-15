@@ -33,7 +33,7 @@ export default function Welcome() {
 const ButtonAnimation = (props) => {
   return (
     <div className={s.wrapper}>
-      <Link className={s.cta} to={`registration-${props.registration}`}>
+      <Link className={s.cta} to={`${props.registration}-registration`}>
         <span className={s.text}>{props.text}</span>
         <span>
           <svg

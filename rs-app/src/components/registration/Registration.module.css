@@ -3,8 +3,8 @@
     justify-content: center;
     align-items: center;
     border: #d3e631 2px solid;
-    margin-top: 150px;
-    margin-bottom: 150px;
+    margin-top: 90px;
+    margin-bottom: 90px;
     border-radius: 20px;
     padding: 20px;
 }
@@ -55,10 +55,10 @@
 }
 
 .link{
-    text-decoration: none;
-    color: #4c97f9;
-  }
-  
-  .link:hover{
-    color: #004093;
-  }
+  text-decoration: none;
+  color: #4c97f9;
+}
+
+.link:hover{
+  color: #004093;
+}
