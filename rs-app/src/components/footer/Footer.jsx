@@ -15,7 +15,7 @@ const Footer = () => {
     <Box>
       <h1
         style={{
-          color: "#998033",
+          color: "#d3e631",
           textAlign: "center",
           marginTop: "10px",
         }}

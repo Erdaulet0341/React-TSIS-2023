@@ -17,7 +17,11 @@ body {
 }
 
 .logo_icon{
-  width: 145px;
+  width: 160px;
+}
+
+.logo_icon:hover{
+  background-color: rgb(124, 121, 121);
 }
 
 .nav ul{
@@ -30,7 +34,7 @@ body {
 
 .nav a{
   padding: 5px;
-  color: #998033;
+  color: #d3e631;
   font-size: 22px;
   text-decoration: none;
   font-weight: bold;
@@ -52,7 +56,7 @@ body {
 .search_box {
   font-size: 20px;
   display: inline-block;
-  border: solid 0.2em #998033;
+  border: solid 0.2em #d3e631;
   position: relative;
   border-radius: 2.5em;
 }
@@ -100,7 +104,7 @@ body {
 }
 .search_box button[type=reset]:before, .search_box button[type=reset]:after {
   content: "";
-  background-color: #998033;
+  background-color: #d3e631;
   width: 0.3em;
   height: 1.4em;
   position: absolute;

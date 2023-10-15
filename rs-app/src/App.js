@@ -13,11 +13,10 @@ function App() {
       <Top />
       <div className="container">
         <Routes>
-          <Route path="/welcome" element = {<Welcome/>}/>
+          <Route path="/" element = {<Welcome/>} index={true}/>
           <Route path="/new-products" element = {<NewProducts/>}/>
           <Route path="/top-products" element = {<TopProducts/>}/>
           <Route path="/categories" element = {<Categories/>}/>
-
         </Routes>
       </div>
       <Footer/>

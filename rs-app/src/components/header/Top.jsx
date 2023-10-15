@@ -7,7 +7,7 @@ import logo from './logo_home.png'
 const Top = () => {
   return (
     <nav className={s.nav}>
-      <Link to="/welcome" className={s.logo}>
+      <Link to="/" className={s.logo}>
         <img className={s.logo_icon} src={logo} alt="logo" />
       </Link>
       <ul>
