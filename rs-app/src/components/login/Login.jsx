@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import React, { useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
 import s from "./Login.module.css";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -10,7 +11,7 @@ const Login = (props) => {
   else type = "/seller-registration";
 
   const [users, setUsers] = useState([]);
-  
+  const navigate = useNavigate();
 
   const fetchUserData = (url) => {
     fetch(url)
@@ -54,6 +55,8 @@ const Login = (props) => {
         if(user.email === loginValue && user.password === passwordValue){
           check = true
           toast.success('Your are logined successfully', { autoClose: 2500 });
+          navigate('/list-of-products');
+
         }
       })
 

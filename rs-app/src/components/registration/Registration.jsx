@@ -1,21 +1,87 @@
 import { Link } from "react-router-dom";
 import s from "./Registration.module.css";
-import React from "react";
+import React, { useState } from "react";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const Registration = (props) => {
+  let type = props.type;
+  const navigate = useNavigate();
+  const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 
-  let type = props.type
 
-  if(type === "Client") type = "/login-client"
-  else type = "/login-seller"
+  if (type === "Client") type = "/login-client";
+  else type = "/login-seller";
+
+  const [formData, setFormData] = useState({
+    username: "",
+    email: "",
+    city: "",
+  });
+  const [passwordValue, setPasswordValue] = useState("");
+  const passwordChange = (e) => {
+    setPasswordValue(e.target.value);
+  };
+  const [rpasswordValue, rsetPasswordValue] = useState("");
+  const rpasswordChange = (e) => {
+    rsetPasswordValue(e.target.value);
+  };
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    if(passwordValue.length <6){
+      toast.error("Password must be more than 5 character", { autoClose: 2500 });
+    }
+    else if (passwordValue !== rpasswordValue) {
+      toast.error("Passwords must be same", { autoClose: 2500 });
+    }
+    else if(!emailRegex.test(formData.email)){
+      toast.error("Enter valid email address", { autoClose: 2500 });
+    } 
+    else {
+      const newUser = {
+        username: formData.username,
+        email: formData.email,
+        city: formData.city,
+        password: passwordValue,
+      };
+
+      console.log(newUser);
+
+      fetch("http://127.0.0.1:8000/api/createClient/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newUser),
+      })
+        .then((response) => response.json())
+        .then(() => {
+          toast.success("Your are logined successfully", { autoClose: 2500 });
+          navigate("/login-client");
+        })
+        .catch((error) => {
+          console.error("Error creating a new user:", error);
+        });
+    }
+  };
 
   return (
     <div className={s.main}>
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className={s.container}>
           <h1>{props.type} Registration</h1>
           <p>Kindly fill in this form to register.</p>
-          <label for="username">
+          <label htmlFor="username">
             <b>Username</b>
           </label>
           <input
@@ -24,31 +90,37 @@ const Registration = (props) => {
             name="username"
             id="username"
             required
+            value={formData.username}
+            onChange={handleInputChange}
           />
 
-          <label for="email">
+          <label ht="email">
             <b>Email</b>
           </label>
           <input
             type="text"
             placeholder="example@mail.com"
-            name="username"
-            id="username"
+            name="email"
+            id="email"
             required
+            value={formData.email}
+            onChange={handleInputChange}
           />
 
-          <label for="email">
+          <label htmlFor="city">
             <b>{props.labell}</b>
           </label>
           <input
             type="text"
             placeholder={props.placee}
-            name="email"
-            id="email"
+            name="city"
+            id="city"
             required
+            value={formData.city}
+            onChange={handleInputChange}
           />
 
-          <label for="pwd">
+          <label htmlFor="pwd">
             <b>Password</b>
           </label>
           <input
@@ -57,9 +129,12 @@ const Registration = (props) => {
             name="pwd"
             id="pwd"
             required
+            value={passwordValue}
+            onChange={passwordChange}
+            autoComplete="current-password"
           />
 
-          <label for="pwd-repeat">
+          <label htmlFor="pwd-repeat">
             <b>Repeat Password</b>
           </label>
           <input
@@ -68,13 +143,20 @@ const Registration = (props) => {
             name="pwd-repeat"
             id="pwd-repeat"
             required
+            value={rpasswordValue}
+            onChange={rpasswordChange}
+            autoComplete="current-password"
           />
 
           <button type="submit">Register</button>
         </div>
         <div className={s.already}>
           <p>
-            Already have an account? <Link className={s.link} to={type}>Log in</Link>.
+            Already have an account?{" "}
+            <Link className={s.link} to={type}>
+              Log in
+            </Link>
+            .
           </p>
         </div>
       </form>
