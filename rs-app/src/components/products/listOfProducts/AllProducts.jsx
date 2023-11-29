@@ -1,36 +1,53 @@
 import React, { useEffect, useState } from "react";
 import s from "./AllProducts.module.css";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
-export default function Categories() {
+export default function AllProducts(prob) {
   const [products, setProducts] = useState([]);
-  const [input, setInput] = useState([]);
-
-  const handl = (event) => {
-    setInput(event.target.value);
-  };
-
-  const fetchData = () => {
-    fetch("http://0.0.0.0:4000/api/products/")
-      .then((response) => response.json())
-      .then((data) => {
-        setProducts(data);
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });
-  };
+  const [searchTerm, setSearchTerm] = useState("");
+  const { id } = useParams();
 
   useEffect(() => {
+    const fetchData = () => {
+      let url = "http://0.0.0.0:4000/api/products/";
+
+      if (id !== undefined) {
+        url = `http://0.0.0.0:4000/api/categories/${id}/products`;
+      }
+
+      fetch(url)
+        .then((response) => response.json())
+        .then((data) => {
+          setProducts(data);
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+        });
+    };
+
     fetchData();
-  }, []);
+  }, [id]);
+
+  const filteredProducts = products.filter((product) =>
+    product.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
     <div className={s.container}>
-      <ul className={s.ull}>
-        {products
-          .filter((element) => element.name.includes(input))
-          .map((product) => (
+      <div className={s.search_box}>
+        <input
+          type="text"
+          placeholder="Search ..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+        <button type="reset"></button>
+      </div>
+      {filteredProducts.length === 0 ? (
+        <p className={s.noProductMessage}>No products found!</p>
+      ) : (
+        <ul className={s.ull}>
+          {filteredProducts.map((product) => (
             <Link
               className={s.linkk}
               to={`/list-of-products/${product.id}`}
@@ -39,17 +56,18 @@ export default function Categories() {
               <ProductItem product={product} />
             </Link>
           ))}
-      </ul>
+        </ul>
+      )}
     </div>
   );
 }
 
-const ProductItem = ({ product }) => {
+export const ProductItem = ({ product }) => {
   const [sseller, setSeller] = useState([]);
 
-  const FetchDataSeller = (id) => {
-    useEffect(() => {
-      fetch(`http://127.0.0.1:8000/api/SellerById/${id}/`)
+  useEffect(() => {
+    const FetchDataSeller = (id) => {
+      fetch(`http://0.0.0.0:4000/api/SellerById/${id}/`)
         .then((response) => response.json())
         .then((data) => {
           setSeller(data);
@@ -57,8 +75,10 @@ const ProductItem = ({ product }) => {
         .catch((error) => {
           console.error("Error fetching data:", error);
         });
-    }, []);
-  };
+    };
+
+    FetchDataSeller(product.seller);
+  }, [product.seller]);
 
   return (
     <div className={s.body}>
@@ -80,8 +100,7 @@ const ProductItem = ({ product }) => {
           <hr />
           <div className={s.creator}>
             <p>
-              <ins>Company: </ins> {FetchDataSeller(product.seller)}{" "}
-              {sseller.company_name}
+              <ins>Company: </ins> {sseller.company_name}
             </p>
           </div>
         </div>

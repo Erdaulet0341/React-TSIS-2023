@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import s from "./TopProducts.module.css";
 import { Link } from "react-router-dom";
 
-export default function Categories() {
+export default function TopProducts() {
   const [products, setProducts] = useState([]);
 
   const fetchData = () => {

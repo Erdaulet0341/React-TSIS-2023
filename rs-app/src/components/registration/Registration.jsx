@@ -50,28 +50,54 @@ const Registration = (props) => {
       toast.error("Enter valid email address", { autoClose: 2500 });
     } 
     else {
-      const newUser = {
-        username: formData.username,
-        email: formData.email,
-        city: formData.city,
-        password: passwordValue,
-      };
-
-      fetch("http://0.0.0.0:4000/api/createClient/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newUser),
-      })
-        .then((response) => response.json())
-        .then(() => {
-          toast.success("Your are logined successfully", { autoClose: 2500 });
-          navigate("/login-client");
+      if(type === "/login-client"){
+        const newUser = {
+          username: formData.username,
+          email: formData.email,
+          city: formData.city,
+          password: passwordValue,
+        };
+  
+        fetch("http://0.0.0.0:4000/api/createClient/", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newUser),
         })
-        .catch((error) => {
-          console.error("Error creating a new user:", error);
-        });
+          .then((response) => response.json())
+          .then(() => {
+            toast.success("Your are logined successfully", { autoClose: 2500 });
+            navigate("/login-client");
+          })
+          .catch((error) => {
+            console.error("Error creating a new user:", error);
+          });
+      }
+      else{
+        const newUser = {
+          username: formData.username,
+          email: formData.email,
+          company_name: formData.city,
+          password: passwordValue,
+        };
+  
+        fetch("http://0.0.0.0:4000/api/createSeller/", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newUser),
+        })
+          .then((response) => response.json())
+          .then(() => {
+            toast.success("Your are logined successfully", { autoClose: 2500 });
+            navigate("/login-seller");
+          })
+          .catch((error) => {
+            console.error("Error creating a new user:", error);
+          });
+      }
     }
   };
 

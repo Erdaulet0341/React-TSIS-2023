@@ -1,6 +1,8 @@
 import s from "./Top.module.css";
 import { Link } from "react-router-dom";
-import logo from './logo_home.png'
+import logo from "./logo_home.png";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Top = () => {
   return (
@@ -15,22 +17,12 @@ const Top = () => {
         <li>
           <Link to="/categories">CATEGORIES</Link>
         </li>
-        <li>
-          <Link to="/new-products">NEW PRODUCTS</Link>
-        </li>
       </ul>
-      <Search></Search>
+      <Link to="/profile">
+        <FontAwesomeIcon className={s.faIcon} icon={faUser} />
+      </Link>
     </nav>
   );
 };
 
 export default Top;
-
-function Search() {
-  return (
-    <form className={s.search_box}>
-      <input type="text" placeholder="Search ..."/>
-      <button type="reset"></button>
-    </form>
-  );
-}
