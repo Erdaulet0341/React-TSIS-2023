@@ -4,7 +4,7 @@ export default function NewProducts() {
   const [clients, setClients] = useState([]);
 
   const fetchUserData = () => {
-    fetch("http://127.0.0.1:8000/api/products/")
+    fetch("http://0.0.0.0:4000/api/products/")
       .then((response) => {
         return response.json();
       })

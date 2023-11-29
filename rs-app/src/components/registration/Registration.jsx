@@ -18,6 +18,8 @@ const Registration = (props) => {
     email: "",
     city: "",
   });
+  
+
   const [passwordValue, setPasswordValue] = useState("");
   const passwordChange = (e) => {
     setPasswordValue(e.target.value);
@@ -55,9 +57,7 @@ const Registration = (props) => {
         password: passwordValue,
       };
 
-      console.log(newUser);
-
-      fetch("http://127.0.0.1:8000/api/createClient/", {
+      fetch("http://0.0.0.0:4000/api/createClient/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

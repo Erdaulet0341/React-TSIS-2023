@@ -28,9 +28,9 @@ const Login = (props) => {
 
   useEffect(() => {
     if (props.type === "client") {
-      fetchUserData("http://127.0.0.1:8000/api/clients/");
+      fetchUserData("http://0.0.0.0:4000/api/clients/");
     } else {
-      fetchUserData("http://127.0.0.1:8000/api/sellers/");
+      fetchUserData("http://0.0.0.0:4000/api/sellers/");
     }
   }, [props.type]);
 
@@ -51,12 +51,11 @@ const Login = (props) => {
       console.log("Enter login and password");
     } else {
       let check = false
-      users.map((user) =>{
+      users.map((user) => {
         if(user.email === loginValue && user.password === passwordValue){
           check = true
           toast.success('Your are logined successfully', { autoClose: 2500 });
           navigate('/list-of-products');
-
         }
       })
 

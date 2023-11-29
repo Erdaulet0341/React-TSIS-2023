@@ -4,7 +4,7 @@ export default function Categories() {
   const [clients, setClients] = useState([]);
 
   const fetchUserData = () => {
-    fetch("http://127.0.0.1:8000/api/sellers/")
+    fetch("http://0.0.0.0:4000/api/sellers/")
       .then((response) => {
         return response.json();
       })
