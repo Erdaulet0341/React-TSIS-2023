@@ -54,6 +54,9 @@ code {
   height: 250px;
   object-fit: contain;
 }
+.nft .main h2{
+  color: #eee;
+}
 
 .nft .main .description {
   margin: 0.5rem 0;
