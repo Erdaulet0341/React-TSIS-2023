@@ -16,6 +16,11 @@ body {
   padding: 0 1rem;
 }
 
+.logo{
+  background-color: #333333;
+  border: none;
+}
+
 .logo_icon{
   width: 160px;
 }

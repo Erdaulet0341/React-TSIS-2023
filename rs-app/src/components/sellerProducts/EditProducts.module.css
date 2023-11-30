@@ -23,6 +23,13 @@
   .profile_item {
     margin-bottom: 15px;
   }
+
+  .iconn{
+    font-size: 22px;
+  }
+  .iconn:hover{
+    opacity: 0.6;
+  }
   
   .label {
     font-weight: bold;

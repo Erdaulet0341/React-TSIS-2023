@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 
 export default function Categories() {
   const [categories, setCategories] = useState([]);
-
   const fetchUserData = () => {
     fetch("http://0.0.0.0:4000/api/categories/")
       .then((response) => {

@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
 import React, { useState, useEffect } from "react";
-import { useNavigate} from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import s from "./Login.module.css";
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Cookies from 'js-cookie';
 
 const Login = (props) => {
   let type = props.type;
@@ -23,8 +24,6 @@ const Login = (props) => {
         console.error("Error fetching data:", error);
       });
   };
-  
-
 
   useEffect(() => {
     if (props.type === "client") {
@@ -40,32 +39,36 @@ const Login = (props) => {
   };
 
   const [passwordValue, setPasswordValue] = useState("");
-  const passwordChange = (e) =>{
-    setPasswordValue(e.target.value)
-  }
+  const passwordChange = (e) => {
+    setPasswordValue(e.target.value);
+  };
 
   const handleSubmit = (e) => {
-    e.preventDefault(); 
+    e.preventDefault();
 
     if (loginValue.length === 0 || passwordValue.length === 0) {
       console.log("Enter login and password");
     } else {
-      let check = false
+      let check = false;
       users.map((user) => {
-        if(user.email === loginValue && user.password === passwordValue){
-          check = true
-          toast.success('Your are logined successfully', { autoClose: 2500 });
-          if(type === "/seller-registration"){
-            navigate('/seller-products', { state: { id: user.id} });
-          }
-          else{
-            navigate('/list-of-products', { state: { id: user.id } });
+        if (user.email === loginValue && user.password === passwordValue) {
+          check = true;
+
+          toast.success("Your are logined successfully", { autoClose: 2500 });
+          if (type === "/seller-registration") {
+            navigate("/seller-products", { state: { id: user.id } });
+            Cookies.set('sellerid', user.id);
+            Cookies.remove('clientid');
+          } else {
+            navigate("/list-of-products", { state: { id: user.id } });
+            Cookies.set('clientid', user.id);
+            Cookies.remove('sellerid');
           }
         }
-      })
+      });
 
-      if(!check){
-        toast.error('Incorrect login or password', { autoClose: 2500 });
+      if (!check) {
+        toast.error("Incorrect login or password", { autoClose: 2500 });
       }
     }
   };
@@ -88,7 +91,7 @@ const Login = (props) => {
             required
             value={loginValue}
             onChange={loginChange}
-            autoComplete="current-email" 
+            autoComplete="current-email"
           />
 
           <label htmlFor="pwd">
@@ -102,7 +105,7 @@ const Login = (props) => {
             required
             value={passwordValue}
             onChange={passwordChange}
-            autoComplete="current-password" 
+            autoComplete="current-password"
           />
 
           <button type="submit">Login</button>
