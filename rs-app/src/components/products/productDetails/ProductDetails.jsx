@@ -1,17 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import s from "./ProductDetails.module.css";
+import Cookies from "js-cookie";
+import { toast } from "react-toastify";
 import {
   faStar,
   faStarHalfAlt,
   faArrowLeft,
+  faEnvelope,
+  faHeart,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function ProductDetails() {
   const { id } = useParams();
-
+  const clientid = Cookies.get("clientid");
   const [product, setProduct] = useState([]);
+  const [likes, setLikes] = useState([]);
 
   const fetchData = () => {
     fetch(`http://0.0.0.0:4000/api/productById/${id}/`)
@@ -24,9 +29,87 @@ export default function ProductDetails() {
       });
   };
 
+  const fetchLike = () => {
+    fetch(`http://0.0.0.0:4000/api/likes/${clientid}/`)
+      .then((response) => response.json())
+      .then((data) => {
+        setLikes(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  };
+
   useEffect(() => {
     fetchData();
+    if (clientid !== undefined) {
+      fetchLike();
+    }
   }, []);
+
+  const addlike = () => {
+    setTimeout(() => {
+      if (clientid !== undefined) {
+        fetchLike();
+        let check = true;
+        likes.map((like) => {
+          if (like.product === product.id) {
+            console.log("find");
+            check = false;
+          }
+        });
+
+        console.log(check);
+
+        if (check) {
+          const newLike = {
+            client: clientid,
+            product: product.id,
+          };
+          console.log(newLike);
+          fetch("http://0.0.0.0:4000/api/likes/", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(newLike),
+          })
+            .then((response) => response.json())
+            .then(() => {
+              toast.success("Your are liked successfully", { autoClose: 1500 });
+            })
+            .catch((error) => {
+              console.log("Error creating a new user:", error);
+            });
+        }
+        else{
+          toast.info("You already liked", { autoClose: 1500 });
+        }
+      } else {
+        toast.error("First you ro login as client", {
+          autoClose: 1500,
+        });
+      }
+    }, 500);
+  };
+
+  const directmsg = () => {
+    if (clientid !== undefined) {
+      const recipientEmail = "seller@g.com";
+      const subject = "By Product";
+      const body = `Can I by this product ${product.name}`;
+
+      const mailtoLink = `mailto:${recipientEmail}?subject=${encodeURIComponent(
+        subject
+      )}&body=${encodeURIComponent(body)}`;
+
+      window.location.href = mailtoLink;
+    } else {
+      toast.error("First you ro login as client", {
+        autoClose: 1500,
+      });
+    }
+  };
 
   return (
     <div>
@@ -72,7 +155,7 @@ export default function ProductDetails() {
                     <FontAwesomeIcon icon={faStarHalfAlt} />
                   </li>
                 </ul>
-                <span>(64 reviews)</span>
+                <span>{product.seller} reviews</span>
               </div>
             </div>
           </div>
@@ -82,7 +165,16 @@ export default function ProductDetails() {
               <h3>{product.quantity}</h3>
             </div>
             <div className={s.action}>
-              <button type="button">Add to cart</button>
+              <button onClick={directmsg} type="button">
+                Direct Message{" "}
+                <FontAwesomeIcon className={s.messagee} icon={faEnvelope} />
+              </button>
+            </div>
+            <div className={s.action}>
+              <button onClick={addlike} type="button">
+                Add to Like{" "}
+                <FontAwesomeIcon className={s.likee} icon={faHeart} />
+              </button>
             </div>
           </div>
         </div>

@@ -175,6 +175,9 @@ main {
   color: #d3e631;
 }
 
+.card__footer .action{
+  margin-left: 10px;
+}
 .card__footer .action button {
   cursor: pointer;
   border: 1px solid #d3e631;
@@ -186,8 +189,29 @@ main {
   font-size: 18px;
   transition: 200ms;
 }
+.card__footer .action a {
+  cursor: pointer;
+  border: 1px solid #d3e631;
+  padding: 14px 30px;
+  border-radius: 200px;
+  color: #000;
+  background: #d3e631;
+  font-family: "Open Sans", sans-serif;
+  font-size: 18px;
+  transition: 200ms;
+  text-decoration: none;
+}
 
 .card__footer .action button:hover {
   background: #fff;
   color: #000;
+}
+.card__footer .action a:hover {
+  background: #fff;
+  color: #000;
+}
+
+
+.likee{
+  color: red;
 }
