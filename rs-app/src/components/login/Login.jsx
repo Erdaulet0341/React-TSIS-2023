@@ -54,7 +54,7 @@ const Login = (props) => {
         if (user.email === loginValue && user.password === passwordValue) {
           check = true;
 
-          toast.success("Your are logined successfully", { autoClose: 2500 });
+          toast.success("Your are logined successfully", { autoClose: 1500 });
           if (type === "/seller-registration") {
             navigate("/seller-products", { state: { id: user.id } });
             Cookies.set('sellerid', user.id);
@@ -68,7 +68,7 @@ const Login = (props) => {
       });
 
       if (!check) {
-        toast.error("Incorrect login or password", { autoClose: 2500 });
+        toast.error("Incorrect login or password", { autoClose: 1500 });
       }
     }
   };

@@ -1,13 +1,13 @@
 import { useLocation } from "react-router-dom";
 import React, { useEffect, useState } from "react";
+import Cookies from "js-cookie";
 import s from "./SellerProducts.module.css";
 import { Link, useNavigate } from "react-router-dom";
 
 export default function SellerProducts() {
   const [products, setProducts] = useState([]);
-  const location = useLocation();
   const navigate = useNavigate()
-  const userId = location.state?.id || "No user ID received";
+  const userId = Cookies.get("sellerid");
 
   useEffect(() => {
     const fetchData = () => {

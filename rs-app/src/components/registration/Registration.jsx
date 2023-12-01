@@ -41,13 +41,13 @@ const Registration = (props) => {
     event.preventDefault();
 
     if(passwordValue.length <6){
-      toast.error("Password must be more than 5 character", { autoClose: 2500 });
+      toast.error("Password must be more than 5 character", { autoClose: 1500 });
     }
     else if (passwordValue !== rpasswordValue) {
-      toast.error("Passwords must be same", { autoClose: 2500 });
+      toast.error("Passwords must be same", { autoClose: 1500 });
     }
     else if(!emailRegex.test(formData.email)){
-      toast.error("Enter valid email address", { autoClose: 2500 });
+      toast.error("Enter valid email address", { autoClose: 1500 });
     } 
     else {
       if(type === "/login-client"){
@@ -67,7 +67,7 @@ const Registration = (props) => {
         })
           .then((response) => response.json())
           .then(() => {
-            toast.success("Your are logined successfully", { autoClose: 2500 });
+            toast.success("Your are logined successfully", { autoClose: 1500 });
             navigate("/login-client");
           })
           .catch((error) => {
@@ -91,7 +91,7 @@ const Registration = (props) => {
         })
           .then((response) => response.json())
           .then(() => {
-            toast.success("Your are logined successfully", { autoClose: 2500 });
+            toast.success("Your are logined successfully", { autoClose: 1500 });
             navigate("/login-seller");
           })
           .catch((error) => {

@@ -96,7 +96,7 @@ export default function ProductDetails() {
   const directmsg = () => {
     if (clientid !== undefined) {
       const recipientEmail = "seller@g.com";
-      const subject = "By Product";
+      const subject =    `${product.name}`;
       const body = `Can I by this product ${product.name}`;
 
       const mailtoLink = `mailto:${recipientEmail}?subject=${encodeURIComponent(
