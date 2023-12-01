@@ -48,3 +48,19 @@ h2 {
   opacity: 0.7;
   cursor: pointer;
 }
+
+.mylikes{
+  display: inline;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  background-color: rgb(57, 244, 57);
+  margin-left: 200px;
+  padding: 3px;
+  font-size: 15px;
+} 
+
+.mylikes:hover{
+  opacity: 0.7;
+  cursor: pointer;
+}

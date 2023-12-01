@@ -1,5 +1,6 @@
 .container {
   margin-left: 40px;
+  margin-top: 20px;
 }
 
 .body {
@@ -12,6 +13,7 @@
   color: #eee;
   float: left;
   margin: 15px 30px;
+  /* width: 400px; */
 }
 
 code {
@@ -58,10 +60,19 @@ code {
   height: 250px;
   object-fit: contain;
 }
+.nft .main h2 {
+  color: #eee;
+}
 
 .nft .main .description {
   margin: 0.5rem 0;
   color: #a89ec9;
+  max-height: calc(
+    1.2em * 2
+  ); /* For example, limit to 3 lines (adjust the number as needed) */
+  overflow: hidden;
+  text-overflow: ellipsis; /* Adds ... at the end if content overflows */
+  line-height: 1.2em;
 }
 
 .nft .main .tokenInfo {
@@ -134,9 +145,17 @@ code {
   filter: opacity(0.5);
 }
 
-.container h1 {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+.noProductMessage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 700px;
+  font-size: 50px;
+}
+
+.container h1{
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
-  font-weight: 500;
+    font-weight: 500;
 }

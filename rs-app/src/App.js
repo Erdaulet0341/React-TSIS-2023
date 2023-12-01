@@ -13,6 +13,7 @@ import Profile from "./components/profile/Profile";
 import SellerProducts from "./components/sellerProducts/SellerProducts";
 import EditProduct from "./components/sellerProducts/EditProduct";
 import AddProduct from "./components/sellerProducts/AddProduct";
+import MyLikes from "./components/profile/MyLikes";
 
 
 function App() {
@@ -35,7 +36,7 @@ function App() {
           <Route path="/seller-products" element = {<SellerProducts/>}/>
           <Route path="/edit-product/:id" element = {<EditProduct/>}/>
           <Route path="/seller-products/add-product" element = {<AddProduct/>}/>
-
+          <Route path="/profile/my-likes" element = {<MyLikes/>}/>
         </Routes>
       </div>
       <Footer/>

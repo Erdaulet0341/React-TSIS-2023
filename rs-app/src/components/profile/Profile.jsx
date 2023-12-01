@@ -1,7 +1,7 @@
 import s from "./Profile.module.css";
 import Cookies from "js-cookie";
 import React, { useEffect, useState } from "react";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -10,6 +10,7 @@ export default function Profile() {
   const clientid = Cookies.get("clientid");
   const sellerid = Cookies.get("sellerid");
   const navigate = useNavigate();
+  const [isVisibleLikes, setIsVisibleLikes] = useState(false);
   const [user, setUser] = useState([]);
   let cnt = 0;
   let city_or_companyname = "";
@@ -22,6 +23,7 @@ export default function Profile() {
   useEffect(() => {
     cnt++;
     if (sellerid !== undefined) {
+      setIsVisibleLikes(false);
       console.log(`cookie = ${sellerid}`);
       fetch(`http://0.0.0.0:4000/api/SellerById/${sellerid}/`)
         .then((response) => response.json())
@@ -32,6 +34,7 @@ export default function Profile() {
           console.log("Error fetching data:", error);
         });
     } else if (clientid !== undefined) {
+      setIsVisibleLikes(true);
       console.log(`cookie = ${clientid}`);
       fetch(`http://0.0.0.0:4000/api/clientById/${clientid}/`)
         .then((response) => response.json())
@@ -62,6 +65,10 @@ export default function Profile() {
 
   const back = () => {
     navigate(-1);
+  };
+
+  const mylikes = () => {
+    navigate("/profile/my-likes");
   };
 
   return (
@@ -97,6 +104,13 @@ export default function Profile() {
           <div className={s.profile_item}>
             <button className={s.logout} onClick={logout}>
               Log out
+            </button>
+            <button
+              className={s.mylikes}
+              onClick={mylikes}
+              style={{ display: isVisibleLikes ? "inline" : "none" }}
+            >
+              My Likes
             </button>
           </div>
         </div>

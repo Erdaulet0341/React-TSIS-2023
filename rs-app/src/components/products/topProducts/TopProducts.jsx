@@ -22,6 +22,8 @@ export default function TopProducts() {
 
   return (
     <div className={s.container}>
+      <h1>TOP SALED PRODUCTS</h1>
+
       <ul className={s.ull}>
         {products.map((product) => (
           <Link
@@ -36,7 +38,6 @@ export default function TopProducts() {
     </div>
   );
 }
-
 
 export const ProductItem = ({ product }) => {
   const [sseller, setSeller] = useState([]);
