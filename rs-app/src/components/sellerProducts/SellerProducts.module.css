@@ -210,3 +210,19 @@
     height: 700px;
     font-size: 50px;
   }
+
+  .addnew{
+    margin-left: 650px;
+    border: none;
+    border-radius: 4px;
+    background-color: #d3e631;
+    color: white;
+    font-weight: 600;
+    padding: 5px;
+    font-size: 19px;
+  }
+
+  .addnew:hover{
+    opacity: 0.7;
+    cursor: pointer;
+  }

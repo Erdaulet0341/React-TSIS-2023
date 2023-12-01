@@ -12,6 +12,7 @@ import ProductDetails from "./components/products/productDetails/ProductDetails"
 import Profile from "./components/profile/Profile";
 import SellerProducts from "./components/sellerProducts/SellerProducts";
 import EditProduct from "./components/sellerProducts/EditProduct";
+import AddProduct from "./components/sellerProducts/AddProduct";
 
 
 function App() {
@@ -33,6 +34,8 @@ function App() {
           <Route path="/profile" element = {<Profile/>}/>
           <Route path="/seller-products" element = {<SellerProducts/>}/>
           <Route path="/edit-product/:id" element = {<EditProduct/>}/>
+          <Route path="/seller-products/add-product" element = {<AddProduct/>}/>
+
         </Routes>
       </div>
       <Footer/>

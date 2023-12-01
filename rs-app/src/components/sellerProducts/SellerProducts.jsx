@@ -1,12 +1,13 @@
 import { useLocation } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import s from "./SellerProducts.module.css";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-export default  function SellerProducts() {
+export default function SellerProducts() {
   const [products, setProducts] = useState([]);
   const location = useLocation();
-  const userId = location.state?.id || 'No user ID received';
+  const navigate = useNavigate()
+  const userId = location.state?.id || "No user ID received";
 
   useEffect(() => {
     const fetchData = () => {
@@ -24,24 +25,30 @@ export default  function SellerProducts() {
     fetchData();
   }, [userId]);
 
+  const addproduct = () =>{
+    navigate("/seller-products/add-product")
+  }
 
   return (
     <div className={s.container}>
-      {products.length === 0 ? (
-        <p className={s.noProductMessage}>No products found!</p>
-      ) : (
-        <ul className={s.ull}>
-          {products.map((product) => (
-            <Link
-              className={s.linkk}
-              to={`/edit-product/${product.id}`}
-              key={product.id}
-            >
-              <ProductItemSeller product={product} />
-            </Link>
-          ))}
-        </ul>
-      )}
+      <button onClick={addproduct} className={s.addnew}>ADD NEW PRODUCT</button>
+      <div>
+        {products.length === 0 ? (
+          <p className={s.noProductMessage}>No products found!</p>
+        ) : (
+          <ul className={s.ull}>
+            {products.map((product) => (
+              <Link
+                className={s.linkk}
+                to={`/edit-product/${product.id}`}
+                key={product.id}
+              >
+                <ProductItemSeller product={product} />
+              </Link>
+            ))}
+          </ul>
+        )}
+      </div>
     </div>
   );
 }
@@ -82,8 +89,7 @@ export const ProductItemSeller = ({ product }) => {
             </div>
           </div>
           <hr />
-          <div className={s.creator}>
-          </div>
+          <div className={s.creator}></div>
         </div>
       </div>
     </div>

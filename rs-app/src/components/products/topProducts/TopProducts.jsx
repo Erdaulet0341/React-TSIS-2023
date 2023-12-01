@@ -38,12 +38,12 @@ export default function TopProducts() {
 }
 
 
-const ProductItem = ({ product }) => {
+export const ProductItem = ({ product }) => {
   const [sseller, setSeller] = useState([]);
 
-  const FetchDataSeller = (id) => {
-    useEffect(() => {
-      fetch(`http://127.0.0.1:8000/api/SellerById/${id}/`)
+  useEffect(() => {
+    const FetchDataSeller = (id) => {
+      fetch(`http://0.0.0.0:4000/api/SellerById/${id}/`)
         .then((response) => response.json())
         .then((data) => {
           setSeller(data);
@@ -51,8 +51,10 @@ const ProductItem = ({ product }) => {
         .catch((error) => {
           console.error("Error fetching data:", error);
         });
-    }, []);
-  };
+    };
+
+    FetchDataSeller(product.seller);
+  }, [product.seller]);
 
   return (
     <div className={s.body}>
@@ -74,8 +76,7 @@ const ProductItem = ({ product }) => {
           <hr />
           <div className={s.creator}>
             <p>
-              <ins>Company: </ins> {FetchDataSeller(product.seller)}{" "}
-              {sseller.company_name}
+              <ins>Company: </ins> {sseller.company_name}
             </p>
           </div>
         </div>

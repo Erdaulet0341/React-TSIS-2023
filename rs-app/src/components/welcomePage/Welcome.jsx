@@ -1,6 +1,6 @@
 import s from "./welcome.module.css";
 import bg from "./bg.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
 
 export default function Welcome() {
   return (
@@ -13,6 +13,7 @@ export default function Welcome() {
         <div className={s.buttons}>
           <ButtonAnimation text="I'm Client" registration="client" />
           <ButtonAnimation text="I'm Seller" registration="seller" />
+          <ButtonAnimation text="Guest" registration="guest" />
         </div>
 
         <div className={s.desc}>
@@ -31,9 +32,17 @@ export default function Welcome() {
 }
 
 const ButtonAnimation = (props) => {
+  const navigate = useNavigate()
+  let url = ""
+  if(props.registration === "guest"){
+    url = "/list-of-products"
+  }
+  else{
+    url = `${props.registration}-registration`
+  }
   return (
     <div className={s.wrapper}>
-      <Link className={s.cta} to={`${props.registration}-registration`}>
+      <Link className={s.cta} to={url}>
         <span className={s.text}>{props.text}</span>
         <span>
           <svg
