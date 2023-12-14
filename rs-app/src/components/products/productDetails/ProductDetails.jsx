@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import s from "./ProductDetails.module.css";
 import Cookies from "js-cookie";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 import {
   faStar,
   faStarHalfAlt,
@@ -17,6 +18,7 @@ export default function ProductDetails() {
   const clientid = Cookies.get("clientid");
   const [product, setProduct] = useState([]);
   const [likes, setLikes] = useState([]);
+  const navigate = useNavigate();
 
   const fetchData = () => {
     fetch(`http://0.0.0.0:4000/api/productById/${id}/`)
@@ -81,8 +83,7 @@ export default function ProductDetails() {
             .catch((error) => {
               console.log("Error creating a new user:", error);
             });
-        }
-        else{
+        } else {
           toast.info("You already liked", { autoClose: 1500 });
         }
       } else {
@@ -92,12 +93,11 @@ export default function ProductDetails() {
       }
     }, 500);
   };
-  
 
   const directmsg = () => {
     if (clientid !== undefined) {
-      const recipientEmail = "seller@g.com";
-      const subject =    `${product.name}`;
+      const recipientEmail = `${product.seller}seller@g.com`;
+      const subject = `${product.name}`;
       const body = `Can I by this product ${product.name}`;
 
       const mailtoLink = `mailto:${recipientEmail}?subject=${encodeURIComponent(
