@@ -155,6 +155,8 @@ code {
 
 .container h1 {
   font-family: 'Bebas Neue', cursive;
+  width: 300px;
+  margin: 0 auto;
   font-size: 3em;
   background-image: linear-gradient(#d3e631, #d3e631);
   background-size: 150% 10px;

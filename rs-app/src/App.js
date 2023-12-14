@@ -14,6 +14,7 @@ import SellerProducts from "./components/sellerProducts/SellerProducts";
 import EditProduct from "./components/sellerProducts/EditProduct";
 import AddProduct from "./components/sellerProducts/AddProduct";
 import MyLikes from "./components/profile/MyLikes";
+import Message from "./components/message/Message";
 
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
           <Route path="/edit-product/:id" element = {<EditProduct/>}/>
           <Route path="/seller-products/add-product" element = {<AddProduct/>}/>
           <Route path="/profile/my-likes" element = {<MyLikes/>}/>
+          <Route path="/message" element = {<Message/>}/>
         </Routes>
       </div>
       <Footer/>

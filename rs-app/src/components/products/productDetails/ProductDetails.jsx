@@ -92,6 +92,7 @@ export default function ProductDetails() {
       }
     }, 500);
   };
+  
 
   const directmsg = () => {
     if (clientid !== undefined) {

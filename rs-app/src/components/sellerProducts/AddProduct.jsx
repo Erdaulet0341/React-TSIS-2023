@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import s from "./AddProduct.module.css";
 import Cookies from "js-cookie";
+import Select from "react-select";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
@@ -9,45 +10,96 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 export default function AddProduct() {
   const navigate = useNavigate();
   const sellerid = Cookies.get("sellerid");
+  const [categories, setCategories] = useState([]);
+  const [categoryname, setCategoryName] = useState("");
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`http://0.0.0.0:4000/api/categories/`);
+        const data = await response.json();
+        setCategories(data);
+      } catch (error) {
+        console.error("Error fetching likes data:", error);
+      }
+    };
+
+    fetchData();
+  }, [sellerid]);
+
+  let categoryNames = [];
+  if (categories.length !== 0) {
+    categories.map((category) => {
+      categoryNames.push(category.name);
+    });
+  }
+
+  let categoryOptions = [];
+  if (categories.length !== 0) {
+    categoryOptions = categoryNames.map((name) => ({
+      label: name,
+      value: name,
+    }));
+  }
 
   const [formData, setFormData] = useState({
     id: 0,
     name: "",
     category: "",
-    seller:sellerid ,
+    seller: sellerid,
     description: "",
     imageURL: "",
     price: "",
     quantity: "",
   });
 
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
+  const handleInputChange = (name, value) => {
     setFormData({
       ...formData,
       [name]: value,
     });
   };
 
+  const handlCategory = (selectedOption) => {
+    setCategoryName(selectedOption.value);
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    const requestOptions = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(formData),
+
+    console.log(`Category: ${formData.category}`);
+
+    const fetchDataCategory = async () => {
+      try {
+        const response = await fetch(
+          `http://0.0.0.0:4000/api/categotyByName/${categoryname}/`
+        );
+        const data = await response.json();
+
+        formData.category = data.id;
+        const requestOptions = {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData),
+        };
+        fetch(`http://0.0.0.0:4000/api/products/`, requestOptions)
+          .then((response) => response.json())
+          .then(() => {
+            console.log(formData)
+            navigate("/seller-products")
+            toast.success("Your Product added successfully", { autoClose: 1500 });
+          })
+          .catch((error) => {
+            console.log("Error updating data:", error);
+            toast.error("Somethink wrong", { autoClose: 2500 });
+          });
+      } catch (error) {
+        console.error("Error fetching category data:", error);
+      }
     };
-    fetch(`http://0.0.0.0:4000/api/products/`, requestOptions)
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(formData)
-        navigate("/seller-products")
-        toast.success("Your Product added successfully", { autoClose: 1500 });
-      })
-      .catch((error) => {
-        console.log("Error updating data:", error);
-        toast.error("Somethink wrong", { autoClose: 2500 });
-      });
-    
+    fetchDataCategory();
+
+    console.log(`iffddd = ${formData.category}`);
   };
 
   return (
@@ -70,7 +122,7 @@ export default function AddProduct() {
               id="username"
               required
               value={formData.name}
-              onChange={handleInputChange}
+              onChange={(e) => handleInputChange(e.target.name, e.target.value)}
             />
           </div>
           <div className={s.profile_item}>
@@ -83,20 +135,23 @@ export default function AddProduct() {
               id="username"
               required
               value={formData.description}
-              onChange={handleInputChange}
+              onChange={(e) => handleInputChange(e.target.name, e.target.value)}
             />
           </div>
+
           <div className={s.profile_item}>
             <span className={s.label}>Category:</span>
-            <input
-              className={s.value}
-              type="text"
-              placeholder="Phones......"
+            <Select
+              className={s.dropdown}
+              placeholder="Select a category"
+              options={categoryOptions}
               name="category"
               id="username"
               required
-              value={formData.category}
-              onChange={handleInputChange}
+              value={categoryOptions.find(
+                (option) => option.value === categoryname
+              )}
+              onChange={handlCategory}
             />
           </div>
           <div className={s.profile_item}>
@@ -109,7 +164,7 @@ export default function AddProduct() {
               id="username"
               required
               value={formData.price}
-              onChange={handleInputChange}
+              onChange={(e) => handleInputChange(e.target.name, e.target.value)}
             />
           </div>
           <div className={s.profile_item}>
@@ -122,7 +177,7 @@ export default function AddProduct() {
               id="username"
               required
               value={formData.imageURL}
-              onChange={handleInputChange}
+              onChange={(e) => handleInputChange(e.target.name, e.target.value)}
             />
           </div>
           <div className={s.profile_item}>
@@ -135,7 +190,7 @@ export default function AddProduct() {
               id="username"
               required
               value={formData.quantity}
-              onChange={handleInputChange}
+              onChange={(e) => handleInputChange(e.target.name, e.target.value)}
             />
           </div>
           <div className={s.btn}>

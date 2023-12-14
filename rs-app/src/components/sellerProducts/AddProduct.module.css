@@ -76,3 +76,9 @@
     cursor: pointer;
     opacity: 0.8;
   }
+
+  .dropdown{
+    width: 187px;
+    border: #727272 solid 1px;
+    border-radius: 5px;
+  }
