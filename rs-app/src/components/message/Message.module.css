@@ -1,7 +1,7 @@
 .main {
   max-width: 700px;
   margin: auto;
-  height: 100vh;
+  height: 90vh;
   background-color: #ddd;
   position: relative;
   display: flex;
@@ -178,4 +178,11 @@
   .chat_submit {
     float: right;
   }
+}
+
+.noProductMessage{
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+  font-size: 20px;
 }

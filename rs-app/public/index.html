@@ -17,4 +17,16 @@
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
   </body>
+  <script>
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker
+        .register("/sw.js", { scope: "/" })
+        .then(function (registration) {
+          {% comment %} console.log("Service Worker Registrated!"); {% endcomment %}
+        });
+      navigator.serviceWorker.ready.then(function (registration) {
+        {% comment %} console.log("Service Worker Ready!"); {% endcomment %}
+      })
+    }
+  </script>
 </html>

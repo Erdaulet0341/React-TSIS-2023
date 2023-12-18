@@ -5,8 +5,6 @@ import Cookies from "js-cookie";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import {
-  faStar,
-  faStarHalfAlt,
   faArrowLeft,
   faEnvelope,
   faHeart,
@@ -94,16 +92,7 @@ export default function ProductDetails() {
 
   const directmsg = () => {
     if (clientid !== undefined) {
-      // navigate("/message-page", { state: { sellerid: product.seller, productid:product.id }})
-      const recipientEmail = `${product.seller}seller@g.com`;
-      const subject = `${product.name}`;
-      const body = `Can I by this product ${product.name}`;
-
-      const mailtoLink = `mailto:${recipientEmail}?subject=${encodeURIComponent(
-        subject
-      )}&body=${encodeURIComponent(body)}`;
-
-      window.location.href = mailtoLink;
+      navigate("/message-page", { state: { sellerid: product.seller, productid:product.id }})
     } else {
       toast.error("First you ro login as client", {
         autoClose: 1500,
@@ -121,7 +110,6 @@ export default function ProductDetails() {
                 <FontAwesomeIcon icon={faArrowLeft} />
               </Link>
             </div>
-            <h3>All Products</h3>
           </div>
           <div className={s.card__body}>
             <div className={s.half}>
@@ -136,26 +124,6 @@ export default function ProductDetails() {
             <div className={s.half}>
               <div className={s.description}>
                 <p>{product.description}</p>
-              </div>
-              <div className={s.eviews}>
-                <ul className={s.stars}>
-                  <li>
-                    <FontAwesomeIcon icon={faStar} />
-                  </li>
-                  <li>
-                    <FontAwesomeIcon icon={faStar} />
-                  </li>
-                  <li>
-                    <FontAwesomeIcon icon={faStar} />
-                  </li>
-                  <li>
-                    <FontAwesomeIcon icon={faStar} />
-                  </li>
-                  <li>
-                    <FontAwesomeIcon icon={faStarHalfAlt} />
-                  </li>
-                </ul>
-                <span>{product.seller} reviews</span>
               </div>
             </div>
           </div>

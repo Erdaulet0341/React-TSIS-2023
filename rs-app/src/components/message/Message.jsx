@@ -148,11 +148,15 @@ const Message = () => {
     <main className={s.main}>
       <div className={s.chat_box_container}>
         <h1 className={s.chat_box_header}>CHAT WITH SELLER</h1>
+        {chatMessages.length === 0 ? (
+        <p className={s.noProductMessage}> You don't have any message with this seller!</p>
+      ) : (
         <div className={s.chat_box}>
           {chatMessages.map((message, index) =>
             chatTemplate({ ...message, key: index })
           )}
         </div>
+        )}
       </div>
       <div className={s.chat_input_container}>
         <input

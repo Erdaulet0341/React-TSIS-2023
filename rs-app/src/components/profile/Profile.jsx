@@ -115,13 +115,13 @@ export default function Profile() {
             >
               My Likes
             </button>
-            {/* <button
+            <button
               className={s.mylikes}
               onClick={mychat}
               style={{ display: isVisibleLikes ? "none" : "inline" }}
             >
               Chats
-            </button> */}
+            </button>
           </div>
         </div>
       </div>
