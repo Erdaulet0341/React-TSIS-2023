@@ -1,69 +1,82 @@
-# Getting Started with Create React App
+# Remote Shop Documentation
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Introduction
+Remote Shop is a B2B (business-to-business) web application designed to facilitate the buying and selling of products among registered users. This documentation provides an overview of the functionalities and features offered by Remote Shop, along with a guide on how to use the application effectively.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## User Roles
 
-### `npm start`
+### Client
+- **Capabilities:**
+  - View products by category
+  - Engage in real-time communication with sellers
+  - Like products
+  - View most sold products
+- **Additional Features:**
+  - Offline mode support using service worker (cached products available without an internet connection)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Seller
+- **Capabilities:**
+  - Sell products
+  - Manage product listings
+  - Interact with clients
+  - Monitor sales and product performance
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---
 
-### `npm test`
+## Key Features
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Product Listing
+- **Categories:** Users can explore products sorted into different categories.
+- **Real-time Interaction:** Clients can communicate instantly with sellers.
+- **Popular Products:** Access the most sold products for better decision-making.
 
-### `npm run build`
+### User Roles
+- **Client Registration:** Users can register as clients to access limited functionalities.
+- **Seller Registration:** Required for selling products and managing listings.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Service Worker Integration
+- **Offline Support:** Cached products accessible to users without an internet connection.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Getting Started
 
-### `npm run eject`
+### User Registration
+1. **Client Registration:**
+   - Sign up as a client to access product browsing features.
+2. **Seller Registration:**
+   - For selling products, sign up as a seller.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Using the App
+1. **Browsing Products:**
+   - Explore products by category.
+   - Engage with sellers in real-time.
+   - Like products of interest.
+2. **Offline Mode:**
+   - Access cached products when offline.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Seller Functions
+1. **Product Management:**
+   - Add, edit, or remove product listings.
+   - Interact with clients for sales.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+---
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-## Learn More
+## Troubleshooting
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Offline Access
+- If facing issues with offline mode, ensure that your browser settings allow service worker functionalities.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Registration Problems
+- Contact support if you encounter issues during registration or have trouble accessing specific functionalities.
 
-### Code Splitting
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Conclusion
+Remote Shop simplifies B2B interactions by providing a platform for buyers and sellers to connect, browse products, and conduct business seamlessly. Enjoy the experience and feel free to reach out for any assistance or inquiries.
 
-### Analyzing the Bundle Size
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This documentation offers an overview of the features, functionalities, and user guidelines for Remote Shop, catering to both clients and sellers. Customization and further enhancements can be implemented based on specific requirements or feedback.
