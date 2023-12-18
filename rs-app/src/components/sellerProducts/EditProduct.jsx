@@ -54,6 +54,7 @@ export default function EditProduct() {
       .then((response) => response.json())
       .then((data) => {
         toast.success("Your Product updated successfully", { autoClose: 2500 });
+        navigate(-1)
       })
       .catch((error) => {
         console.error("Error updating data:", error);

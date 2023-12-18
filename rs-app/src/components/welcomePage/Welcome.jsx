@@ -1,8 +1,26 @@
 import s from "./welcome.module.css";
 import bg from "./bg.png";
-import { Link, useNavigate} from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Welcome() {
+
+  useEffect(() => {
+    const fetchData = () => {
+      let url = "http://0.0.0.0:4000/api/products/";
+      fetch(url)
+        .then((response) => response.json())
+        .then((data) => {
+          localStorage.setItem("products", JSON.stringify(data));
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+        });
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <div className={s.container}>
       <div className={s.center}>
@@ -32,13 +50,12 @@ export default function Welcome() {
 }
 
 const ButtonAnimation = (props) => {
-  const navigate = useNavigate()
-  let url = ""
-  if(props.registration === "guest"){
-    url = "/list-of-products"
-  }
-  else{
-    url = `${props.registration}-registration`
+  const navigate = useNavigate();
+  let url = "";
+  if (props.registration === "guest") {
+    url = "/list-of-products";
+  } else {
+    url = `${props.registration}-registration`;
   }
   return (
     <div className={s.wrapper}>

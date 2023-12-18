@@ -21,6 +21,8 @@ export default function AllProducts(prob) {
           setProducts(data);
         })
         .catch((error) => {
+          const cachedProducts = JSON.parse(localStorage.getItem('products'));
+          setProducts(cachedProducts)
           console.error("Error fetching data:", error);
         });
     };

@@ -66,41 +66,44 @@ export default function AddProduct() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
+  
     console.log(`Category: ${formData.category}`);
-
+  
     const fetchDataCategory = async () => {
       try {
-        const response = await fetch(
-          `http://0.0.0.0:4000/api/categotyByName/${categoryname}/`
-        );
-        const data = await response.json();
-
-        formData.category = data.id;
+        const response = await fetch(`http://0.0.0.0:4000/api/categotyByName/${categoryname}/`);
+        const category = await response.json();
+  
+        formData.category = category.id;
+        return formData;
+      } catch (error) {
+        console.error("Error fetching category data:", error);
+        throw error; 
+      }
+    };
+  
+    fetchDataCategory()
+      .then((updatedFormData) => {
         const requestOptions = {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(formData),
+          body: JSON.stringify(updatedFormData),
         };
-        fetch(`http://0.0.0.0:4000/api/products/`, requestOptions)
-          .then((response) => response.json())
-          .then(() => {
-            console.log(formData)
-            navigate("/seller-products")
-            toast.success("Your Product added successfully", { autoClose: 1500 });
-          })
-          .catch((error) => {
-            console.log("Error updating data:", error);
-            toast.error("Somethink wrong", { autoClose: 2500 });
-          });
-      } catch (error) {
-        console.error("Error fetching category data:", error);
-      }
-    };
-    fetchDataCategory();
-
-    console.log(`iffddd = ${formData.category}`);
+  
+        return fetch(`http://0.0.0.0:4000/api/products/`, requestOptions);
+      })
+      .then((response) => response.json())
+      .then(() => {
+        console.log(formData);
+        navigate("/seller-products");
+        toast.success("Your Product added successfully", { autoClose: 1500 });
+      })
+      .catch((error) => {
+        console.log("Error updating data:", error);
+        toast.error("Something went wrong", { autoClose: 2500 });
+      });
   };
+  
 
   return (
     <div className={s.container}>

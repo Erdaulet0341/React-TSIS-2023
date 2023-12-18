@@ -61,8 +61,6 @@ export default function ProductDetails() {
           }
         });
 
-        console.log(check);
-
         if (check) {
           const newLike = {
             client: clientid,
@@ -96,6 +94,7 @@ export default function ProductDetails() {
 
   const directmsg = () => {
     if (clientid !== undefined) {
+      // navigate("/message-page", { state: { sellerid: product.seller, productid:product.id }})
       const recipientEmail = `${product.seller}seller@g.com`;
       const subject = `${product.name}`;
       const body = `Can I by this product ${product.name}`;

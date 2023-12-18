@@ -14,6 +14,9 @@ import SellerProducts from "./components/sellerProducts/SellerProducts";
 import EditProduct from "./components/sellerProducts/EditProduct";
 import AddProduct from "./components/sellerProducts/AddProduct";
 import MyLikes from "./components/profile/MyLikes";
+import Message from "./components/message/Message";
+import SellerMessage from "./components/message/SellerMessage";
+import ChatListSeller from "./components/profile/ChatListSeller";
 
 
 function App() {
@@ -37,6 +40,9 @@ function App() {
           <Route path="/edit-product/:id" element = {<EditProduct/>}/>
           <Route path="/seller-products/add-product" element = {<AddProduct/>}/>
           <Route path="/profile/my-likes" element = {<MyLikes/>}/>
+          <Route path="/message-page" element = {<Message/>}/>
+          <Route path="/direct-message" element = {<SellerMessage/>}/>
+          <Route path="/profile/my-chats" element = {<ChatListSeller/>}/>
         </Routes>
       </div>
       <Footer/>

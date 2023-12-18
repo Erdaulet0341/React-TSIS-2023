@@ -1,0 +1,42 @@
+.chat_box_container{
+    margin-bottom: 200px;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+}
+
+*{
+    text-decoration: none;
+}
+
+.onee{
+    display: flex;
+    align-items: center;
+    font-size: larger;
+}
+.link{
+    text-decoration: none;
+}
+
+.onee p{
+    padding: 0 4px;
+}
+
+.ai_person_container{
+    border: 2px solid black;    
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px; 
+}
+
+.ai_person_container:hover{
+    opacity: 0.7;
+}
+
+.noMessage{
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 400px;
+  font-size: 40px;
+}

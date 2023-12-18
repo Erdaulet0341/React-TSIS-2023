@@ -70,6 +70,9 @@ export default function Profile() {
   const mylikes = () => {
     navigate("/profile/my-likes");
   };
+  const mychat = () =>{
+    navigate("/profile/my-chats");
+  }
 
   return (
     <div className={s.container}>
@@ -112,6 +115,13 @@ export default function Profile() {
             >
               My Likes
             </button>
+            {/* <button
+              className={s.mylikes}
+              onClick={mychat}
+              style={{ display: isVisibleLikes ? "none" : "inline" }}
+            >
+              Chats
+            </button> */}
           </div>
         </div>
       </div>
