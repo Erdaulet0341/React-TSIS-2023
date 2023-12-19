@@ -1,7 +1,7 @@
 # Remote Shop Documentation
 
 ## Introduction
-Remote Shop is a B2B (business-to-business) web application designed to facilitate the buying and selling of products among registered users. This documentation provides an overview of the functionalities and features offered by Remote Shop, along with a guide on how to use the application effectively.
+Remote Shop is a C2B (customer-to-business) web application designed to facilitate the buying and selling of products among registered users. This documentation provides an overview of the functionalities and features offered by Remote Shop, along with a guide on how to use the application effectively.
 
 ---
 
