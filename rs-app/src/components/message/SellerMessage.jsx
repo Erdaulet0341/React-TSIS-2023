@@ -47,7 +47,12 @@ const SellerMessage = () => {
             message.sellerid == sellerid &&
             message.productid == productid
         );
-        setChatMessages(newchatMessages);
+        const chat = Array.from(
+          new Set(newchatMessages.map((product) => product.message))
+        ).map((message) => {
+          return newchatMessages.find((product) => product.message === message);
+        });
+        setChatMessages(chat);
       })
       .catch((error) => {
         console.log("Error fetching data:", error);
@@ -70,6 +75,7 @@ const SellerMessage = () => {
     const date = new Date();
     const timestamp = date.toLocaleTimeString();
     const newChatMessages = [...chatMessages];
+    console.log(456)
     if (fromPerson && inputValue.trim().length !== 0) {
       formData.message = inputValue.trim();
       formData.timestamp = timestamp;
@@ -111,6 +117,7 @@ const SellerMessage = () => {
 
   const handleKeyPress = (e) => {
     if (e.key === "Enter" && inputValue.length !== 0) {
+      console.log("22222")
       appendChatBox(true);
     }
   };

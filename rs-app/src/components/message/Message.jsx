@@ -76,7 +76,12 @@ const Message = () => {
             message.sellerid == sellerid &&
             message.productid == productid
         );
-        setChatMessages(newchatMessages);
+        const chat = Array.from(
+          new Set(newchatMessages.map((product) => product.message))
+        ).map((message) => {
+          return newchatMessages.find((product) => product.message === message);
+        });
+        setChatMessages(chat);
       })
       .catch((error) => {
         console.log("Error fetching data:", error);
@@ -90,15 +95,15 @@ const Message = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       fetchUserData("http://0.0.0.0:4000/api/messages/");
-    }, 1500); 
-    return () => clearInterval(interval); 
+    }, 1500);
+    return () => clearInterval(interval);
   }, [clientid]);
-  
+
   const appendChatBox = (fromPerson) => {
     const date = new Date();
     const timestamp = date.toLocaleTimeString();
     const newChatMessages = [...chatMessages];
-
+    console.log("33333");
     if (fromPerson && inputValue.trim().length !== 0) {
       formData.message = inputValue.trim();
       formData.timestamp = timestamp;
@@ -116,6 +121,7 @@ const Message = () => {
           return response.json();
         })
         .then((data) => {
+          console.log("111111");
           fetchUserData("http://0.0.0.0:4000/api/messages/");
         })
         .catch((error) => {
@@ -134,6 +140,7 @@ const Message = () => {
 
   const handleButtonClick = () => {
     if (inputValue.length !== 0) {
+      console.log("44444");
       appendChatBox(true);
     }
   };
@@ -149,13 +156,16 @@ const Message = () => {
       <div className={s.chat_box_container}>
         <h1 className={s.chat_box_header}>CHAT WITH SELLER</h1>
         {chatMessages.length === 0 ? (
-        <p className={s.noProductMessage}> You don't have any message with this seller!</p>
-      ) : (
-        <div className={s.chat_box}>
-          {chatMessages.map((message, index) =>
-            chatTemplate({ ...message, key: index })
-          )}
-        </div>
+          <p className={s.noProductMessage}>
+            {" "}
+            You don't have any message with this seller!
+          </p>
+        ) : (
+          <div className={s.chat_box}>
+            {chatMessages.map((message, index) =>
+              chatTemplate({ ...message, key: index })
+            )}
+          </div>
         )}
       </div>
       <div className={s.chat_input_container}>
